@@ -1,6 +1,27 @@
-<img src="doc/imgs/CVLab.png" alt="alt text" width="60%">
-# CVLabCore
-This package contains all the necessary drivers to control the CVLab platform.
+<p align="center">
+  <img src="docs/imgs/CVLab.png" alt="alt text" width="20%">
+</p>
+
+This package contains the library to control the CVLab platform.
+
+---
+
+## Features
+- Wide range of supported hardware for CVLab
+- Provides single interface per device through REST APIs type irrespective of a particular manufacturer.
+- Easy addition of new devices.
+
+---
+## Demo
+
+<p align="center">
+  <a href="https://youtu.be/D0d3COF4XDA">
+    <img src="https://img.youtube.com/vi/D0d3COF4XDA/0.jpg" alt="CVLab Testing Video Thumbnail">
+  </a>
+
+## Setup
+Clone this repo to your PC and run `pip install .` from the repository folder.
+
 ## Examples
 For all the examples is necessary to load the configuration files as follows (the given values are just examples): 
 
