@@ -2,7 +2,7 @@
   <img src="docs/imgs/CVLab.png" alt="alt text" width="20%">
 </p>
 
-This package contains the library to control the CVLab platform.
+This package contains the CVLabCore library to control the CVLab platform.
 
 ---
 
