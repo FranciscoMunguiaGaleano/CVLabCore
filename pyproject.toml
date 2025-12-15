@@ -14,8 +14,9 @@ requires-python = ">=3.8"
 license = {text = "GNU GENERAL PUBLIC LICENSE"}
 
 dependencies = [
-    "requests"
+    "Requests"
 ]
 
 [tool.setuptools.packages.find]
-include = ["cvlab"]
+where = ["."]
+include = ["cvlab*"]
