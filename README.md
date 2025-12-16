@@ -1,7 +1,5 @@
 <p align="center">
-  <img src="docs/imgs/CVLab.png" alt="alt text" width="20%">
-</p>
-
+  <img src="https://raw.githubusercontent.com/FranciscoMunguiaGaleano/CVLabCore/04d94fd6020e5f67c6deb5961af74ff7b3248360/docs/imgs/CVLab.png" alt="alt text" width="20%"></p>
 This package contains the CVLabCore library to control the CVLab platform.
 
 ---
