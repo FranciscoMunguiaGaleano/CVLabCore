@@ -34,9 +34,6 @@ class TopCarousel(Device):
 
     def move_absolute(self, pos: int):
         """Move carousel to an absolute position."""
-        if not self.positions or pos >= len(self.positions):
-            logger.error("[%s] Invalid position: %s", self.name, pos)
-            return None
         self.position = self.positions[str(pos)]
         logger.info("[%s] Moving to absolute position %s at %.2f degrees", self.name, pos, self.position)
         return self.send_socket_command(f"go {self.position}")
