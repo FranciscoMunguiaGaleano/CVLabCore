@@ -156,6 +156,9 @@ class RobotClient(Device):
     def __init__(self, name: str = "CNC driver", robot_url: Optional[str] = None):
         super().__init__(name=name, base_url=robot_url)
         self.speed = 100
+        self.X_axis = 0.0
+        self.Y_axis = 0.0
+        self.Z_axis = 0.0
 
     # ------------------------------------------------------------------
     # Simple API wrappers
@@ -187,7 +190,9 @@ class RobotClient(Device):
 
     def status(self):
         logger.info("[%s] Getting status...", self.name)
-        return self.get("/status")
+        status = self.get("/status")
+        status["response"] = F"X{self.X_axis}Y{self.Y_axis}Z{self.Z_axis}GRIPPER"
+        return status
 
     def reset(self):
         logger.info("[%s] Resetting system...", self.name)

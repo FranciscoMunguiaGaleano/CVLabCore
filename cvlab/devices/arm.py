@@ -14,6 +14,7 @@ class Arm(RobotClient):
     def __init__(self, name: str, arm_url: str, arm_aux_url: str, arm_aux_port: int):
         super().__init__(name=name, robot_url=arm_url)
         self._plc = Plc(name=f"{name}_plc_aux", plc_url=arm_aux_url, plc_port=arm_aux_port)
+        self.gripper_pos = 1
 
     # ------------------------------------------------------------------
     # Gripper control
@@ -21,9 +22,11 @@ class Arm(RobotClient):
     def open_gripper(self):
         """Open the robotic gripper using PLC."""
         logger.info("[%s] Opening gripper...", self.name)
+        self.gripper_pos = 1
         return self._plc.gripper_open()
 
     def close_gripper(self):
         """Close the robotic gripper using PLC."""
         logger.info("[%s] Closing gripper...", self.name)
+        self.gripper_pos = 0
         return self._plc.gripper_close()
