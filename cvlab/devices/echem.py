@@ -158,7 +158,12 @@ class Echem(RobotClient):
     def pipette_arm_reset(self): return self._pipette.reset()
     def pipette_arm_send_gcode(self, gcode): return self._pipette.send_gcode(gcode)
     def pipette_arm_execute_routine(self, file): return self._pipette.execute_routine(file)
-
+    def pipette_arm_status(self): return self._pipette.status()
+    def pipette_arm_get_X_axis(self): return self._pipette.X_axis
+    def pipette_arm_set_X_axis(self, X_axis): self._pipette.X_axis = X_axis 
+    def pipette_arm_get_Y_axis(self): return self._pipette.X_axis
+    def pipette_arm_set_Y_axis(self, Y_axis): self._pipette.Y_axis = Y_axis 
+    
     # ------------------------------------------------------------------
     # Pipette servo/head
     # ------------------------------------------------------------------
