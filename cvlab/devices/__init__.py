@@ -9,3 +9,4 @@ from .solid_dispenser import SolidDispenser
 from .ph_meter import PHMeter
 from .pipette import Pipette, PipetteAux
 from .plc import Plc
+from .camera import Camera

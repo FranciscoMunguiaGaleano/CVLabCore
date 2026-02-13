@@ -96,7 +96,10 @@ class Device:
         except (requests.RequestException, json.JSONDecodeError) as e:
             logger.error("[%s] GET %s failed: %s", self.name, url, e)
             return None
-
+    def get_binary(self, endpoint: str):
+        response = requests.get(self._full_url(endpoint), timeout=self.timeout)
+        response.raise_for_status()
+        return response.content
     # ------------------------------------------------------------------
     # Socket API
     # ------------------------------------------------------------------
