@@ -131,6 +131,11 @@ class Echem(RobotClient):
             pipette_aux_url=pipette_aux_url,
             pipette_aux_port=pipette_aux_port
         )
+    # ------------------------------------------------------------------
+    # Electrodes
+    # ------------------------------------------------------------------
+    def raise_electrodes(self): return self._echem_aux.raise_electrodes()
+    def lower_electrodes(self): return self._echem_aux.lower_electrodes()
 
     # ------------------------------------------------------------------
     # Polisher
