@@ -10,3 +10,4 @@ from .ph_meter import PHMeter
 from .pipette import Pipette, PipetteAux
 from .plc import Plc
 from .camera import Camera
+from .ph_meter_toledo import ToledoPhMeter

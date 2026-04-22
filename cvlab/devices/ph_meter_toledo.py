@@ -1,5 +1,5 @@
 import logging
-from cvlab.devices import Device
+from .base import Device
 import time
 
 logger = logging.getLogger(__name__)
