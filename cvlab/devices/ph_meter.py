@@ -49,8 +49,9 @@ class PHMeter(Device):
         """Read pH value, applying calibration."""
         try:
             adc_raw = self.read_value_from_socket("1")
-            adc_value = int(adc_raw.split(":")[1])
-            voltage = self.adc_to_voltage(adc_value)
+            #adc_value = int(adc_raw.split(":")[1])
+            #voltage = self.adc_to_voltage(adc_value)
+            voltage = self.adc_to_voltage(adc_raw)
             slope, intercept = self.load_calibration()
             ph = slope * voltage + intercept
             logger.info("[%s] Measured pH: %.4f", self.name, ph)
