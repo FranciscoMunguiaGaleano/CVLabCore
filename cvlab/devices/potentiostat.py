@@ -2,6 +2,7 @@ from typing import Optional, Dict, Any
 from decimal import Decimal
 from .base import Device  
 import logging
+import requests
 
 logger = logging.getLogger(__name__)
 
@@ -20,6 +21,27 @@ class PotentiostatClient(Device):
 
     def _endpoint(self, potentiostat_id: int, path: str) -> str:
         return f"/{potentiostat_id}/{path}"
+
+    def _post_binary(self, endpoint: str, params=None) -> Optional[bytes]:
+        """Local POST method to fetch binary data (CSV)."""
+        if not self.base_url:
+            logger.error("[%s] Cannot POST: base_url is not set.", self.name)
+            return None
+
+        url = self._full_url(endpoint)
+
+        try:
+            response = requests.post(
+                url,
+                params=params,
+                timeout=None  # 🔥 no timeout (wait as long as needed)
+            )
+            response.raise_for_status()
+            return response.content
+
+        except requests.RequestException as e:
+            logger.error("[%s] POST(binary) %s failed: %s", self.name, url, e)
+            return None
 
     # ------------------------------------------------------------------
     # API Methods
@@ -45,14 +67,17 @@ class PotentiostatClient(Device):
 
         payload = {
             "i_range": i_range,
-            "start_potential": str(start_potential),
-            "potential_vertex": str(potential_vertex),
+            "start_potential": start_potential,
+            "potential_vertex": potential_vertex,
             "scan_rate": scan_rate,
             "cycles": cycles,
-            "increment": str(increment),
+            "increment": increment,
         }
 
-        return self.get_binary(self._endpoint(potentiostat_id, "cyclic_voltemmetry") + "?" + self._to_query(payload))
+        return self._post_binary(
+            self._endpoint(potentiostat_id, "cyclic_voltemmetry"),
+            params=payload
+        )
 
     def linear_voltammetry(
         self,
@@ -67,13 +92,16 @@ class PotentiostatClient(Device):
 
         payload = {
             "i_range": i_range,
-            "start_potential": str(start_potential),
-            "end_potential": str(end_potential),
+            "start_potential": start_potential,
+            "end_potential": end_potential,
             "scan_rate": scan_rate,
-            "increment": str(increment),
+            "increment": increment,
         }
 
-        return self.get_binary(self._endpoint(potentiostat_id, "linear_voltemmetry") + "?" + self._to_query(payload))
+        return self._post_binary(
+            self._endpoint(potentiostat_id, "linear_voltemmetry"),
+            params=payload
+        )
 
     def open_circuit(
         self,
@@ -88,7 +116,10 @@ class PotentiostatClient(Device):
             "sampling_period": sampling_period,
         }
 
-        return self.get_binary(self._endpoint(potentiostat_id, "open_circuit") + "?" + self._to_query(payload))
+        return self._post_binary(
+            self._endpoint(potentiostat_id, "open_circuit"),
+            params=payload
+        )
 
     def electrolysis(
         self,
@@ -102,17 +133,12 @@ class PotentiostatClient(Device):
 
         payload = {
             "i_range": i_range,
-            "potential": str(potential),
+            "potential": potential,
             "duration": duration,
             "sampling_period": sampling_period,
         }
 
-        return self.get_binary(self._endpoint(potentiostat_id, "electrolysis") + "?" + self._to_query(payload))
-
-    # ------------------------------------------------------------------
-    # Utility
-    # ------------------------------------------------------------------
-
-    def _to_query(self, payload: Dict[str, Any]) -> str:
-        """Convert dict to query string."""
-        return "&".join(f"{k}={v}" for k, v in payload.items())
+        return self._post_binary(
+            self._endpoint(potentiostat_id, "electrolysis"),
+            params=payload
+        )

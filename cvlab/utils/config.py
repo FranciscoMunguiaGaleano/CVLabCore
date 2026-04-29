@@ -9,11 +9,14 @@ logger = logging.getLogger(__name__)
 
 @dataclass(frozen=True)
 class Config:
+    AI_URL: str
+    POTENTIOSTASTS_URL: str
     ARM_URL: str
     ECHEM_URL: str
     PIPETTE_URL: str
     LIQUIDS_URL: str
     SOLIDS_URL: str
+    TOLEDO_PH_METER_URL:str
     CAMERA_URL: str
     PLC_URL: str
     PLC_PORT: int
@@ -29,6 +32,8 @@ class Config:
     PH_PROBE_PORT: int
     PUMPS_URL: str
     PUMPS_PORT: int
+    SERVO_URL: str
+    SERVO_PORT: int
 
 
 def load_config(conf_file: str = "conf.json") -> Optional[Config]:
