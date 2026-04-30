@@ -21,8 +21,8 @@ class EchemAux(Device):
     }
 
     CMD = {
-        "lower_electrodes": "1",
-        "raise_electrodes": "2",
+        "lower_electrodes": "2",
+        "raise_electrodes": "1",
         "polisher_on": "3",
         "polisher_off": "4",
         "dropper_on": "5",
