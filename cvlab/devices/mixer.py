@@ -29,12 +29,12 @@ class Mixer:
     def raise_lift(self):
         """Raise the lift using socket commands."""
         logger.info("[%s] Raising lift.", self.name)
-        return self._lift.send_socket_command("2")
+        return self._lift.send_socket_command("1")
 
     def lower_lift(self):
         """Lower the lift using socket commands."""
         logger.info("[%s] Lowering lift.", self.name)
-        return self._lift.send_socket_command("1")
+        return self._lift.send_socket_command("2")
 
     # ------------------------------------------------------------------
     # Ultrasound bath control
