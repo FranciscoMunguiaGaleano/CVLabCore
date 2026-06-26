@@ -33,7 +33,7 @@ class Device:
         base_url: Optional[str] = None,
         socket_url: Optional[str] = None,
         port: int = 5000,
-        timeout: int = 5,
+        timeout: int = None,
     ) -> None:
         self.name = name
         self.base_url = base_url.rstrip("/") if base_url else None
