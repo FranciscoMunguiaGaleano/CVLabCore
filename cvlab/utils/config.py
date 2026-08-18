@@ -34,6 +34,8 @@ class Config:
     PUMPS_PORT: int
     SERVO_URL: str
     SERVO_PORT: int
+    STIRRER_URL: str
+    STIRRER_PORT: int
 
 
 def load_config(conf_file: str = "conf.json") -> Optional[Config]:

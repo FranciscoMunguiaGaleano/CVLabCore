@@ -4,6 +4,7 @@ from typing import Optional
 from .base import Device,RobotClient
 from .plc import Plc
 from .pipette import Pipette
+from .stirrer import Stirrer
 
 logger = logging.getLogger(__name__)
 
@@ -110,6 +111,8 @@ class Echem(RobotClient):
         pipette_aux_port: int,
         plc_url: str,
         plc_port: int,
+        stirrer_url: str,
+        stirrer_port: int
     ):
         super().__init__(name=name, robot_url=echem_url)
 
@@ -131,6 +134,16 @@ class Echem(RobotClient):
             pipette_aux_url=pipette_aux_url,
             pipette_aux_port=pipette_aux_port
         )
+        self._stirrer = Stirrer(
+            name=f"{name}_stirrer",
+            stirrer_url=stirrer_url,
+            stirrer_port=stirrer_port
+        )
+    # ------------------------------------------------------------------
+    # Stirrer
+    # ------------------------------------------------------------------
+    def turn_stirrers_on(self): return self._stirrer.stirrers_on()
+    def turn_stirrers_off(self): return self._stirrer.stirrers_off()
     # ------------------------------------------------------------------
     # Electrodes
     # ------------------------------------------------------------------
