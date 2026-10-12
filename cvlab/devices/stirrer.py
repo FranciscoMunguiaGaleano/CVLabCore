@@ -41,3 +41,19 @@ class Stirrer(Device):
         """
         logger.info("[%s] Turning stirrers OFF...", self.name)
         return self.send_socket_command("2")
+    
+    def washers_on(self):
+        """
+        Turns ALL stirrers on
+        Command '1' = stirrer (fans on)).
+        """
+        logger.info("[%s] Turning electrode washers ON...", self.name)
+        return self.send_socket_command("3")
+    
+    def washers_off(self):
+        """
+        Turns ALL stirrers off
+        Command '0' = stirrer (fans off)).
+        """
+        logger.info("[%s] Turning electrode washers OFF...", self.name)
+        return self.send_socket_command("4")

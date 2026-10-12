@@ -145,6 +145,11 @@ class Echem(RobotClient):
     def turn_stirrers_on(self): return self._stirrer.stirrers_on()
     def turn_stirrers_off(self): return self._stirrer.stirrers_off()
     # ------------------------------------------------------------------
+    # Washers
+    # ------------------------------------------------------------------
+    def turn_washers_on(self): return self._stirrer.washers_on()
+    def turn_washers_off(self): return self._stirrer.washers_off()
+    # ------------------------------------------------------------------
     # Electrodes
     # ------------------------------------------------------------------
     def raise_electrodes(self): return self._echem_aux.raise_electrodes()
@@ -181,7 +186,7 @@ class Echem(RobotClient):
     def pipette_arm_set_X_axis(self, X_axis): self._pipette.X_axis = X_axis 
     def pipette_arm_get_Z_axis(self): return self._pipette.Z_axis
     def pipette_arm_set_Z_axis(self, Z_axis): self._pipette.Z_axis = Z_axis 
-    
+    def pipette_wait_until_idle(self): return self._pipette.wait_until_idle()
     # ------------------------------------------------------------------
     # Pipette servo/head
     # ------------------------------------------------------------------
